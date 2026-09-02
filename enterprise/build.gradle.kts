@@ -18,12 +18,28 @@ repositories {
 }
 
 dependencies {
+
+	// Dependencias de Spring Boot
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
-	compileOnly("org.projectlombok:lombok")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("org.postgresql:postgresql")
+
+	// Lombok para reducir el código boilerplate
+	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+
+	// Para manejo de flujos OAuth2 y OpenID Connect
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+
+	// Manejar seguridad de APIs con JWT
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+
+	// DevTools para reinicio automático y otras utilidades de desarrollo
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	// Driver PostgreSQL
+	runtimeOnly("org.postgresql:postgresql")
+
+	// Test
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testCompileOnly("org.projectlombok:lombok")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
