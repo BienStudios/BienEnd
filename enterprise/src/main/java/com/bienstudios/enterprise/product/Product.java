@@ -1,21 +1,8 @@
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import jakarta.persistence.Version;
+package com.bienstudios.enterprise.product;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 
 /**
  * <h3 lang="es">Producto</h3>
@@ -23,6 +10,9 @@ import org.hibernate.annotations.UpdateTimestamp;
  * <p lang="es">Utilice esta entidad como representación de un producto
  * en la base de datos. Las propiedades aquí definidas son moldeables a
  * las necesidades específicas de cada caso de uso.</p>
+ * 
+ * @author BienStudios Develops
+ * @since 26.00.0000_SNAPSHOT
  */
 @Getter
 @Setter
