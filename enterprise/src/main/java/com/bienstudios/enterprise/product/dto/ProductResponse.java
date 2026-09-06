@@ -2,6 +2,16 @@ package com.bienstudios.enterprise.product.dto;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
+import java.util.Map;
+
+import com.bienstudios.enterprise.product.Category;
+import com.bienstudios.enterprise.product.Condition;
+import com.bienstudios.enterprise.product.HealthStatus;
+import com.bienstudios.enterprise.product.LegalStatus;
+import com.bienstudios.enterprise.product.PaymentCondition;
+import com.bienstudios.enterprise.product.PaymentMethod;
+import com.bienstudios.enterprise.product.SubCategory;
 
 import lombok.Builder;
 
@@ -59,10 +69,11 @@ public record ProductResponse(
     String brand,
     String model,
     String description,
-    String condition,
-    String health,
-    String legality,
-    String paymentConditions,
+    Condition condition,
+    HealthStatus health,
+    LegalStatus legality,
+    Map<Category, List<SubCategory>> categories,
+    Map<PaymentCondition, List<PaymentMethod>> paymentConditions,
     BigDecimal price,
     Instant createdAt,
     Instant lastUpdate // TIMESTAMP WITH TIME ZONE (PostgreSQL)

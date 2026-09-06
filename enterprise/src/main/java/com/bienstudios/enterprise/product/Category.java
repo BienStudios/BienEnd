@@ -14,9 +14,12 @@ package com.bienstudios.enterprise.product;
  * cada elemento y modificando la <strong>entidad {@code
  * Product}</strong> en los campos <i>{@code
  * @Enumerated(EnumType.ORDINAL)}</i> cambiándolos por
- * <i>{@code @Enumerated(EnumType.STRING)}. Este cambio
- * permitirá simplificar cualquier modificación futura
- * del enum incluyendo el orden de los elementos.</i></p>
+ * <i>{@code @Enumerated(EnumType.STRING)}. También puede
+ * modificar directamente la entidad sin agregar texto ni
+ * constructores dentro del {@code Enum} por simplicidad.
+ * Este cambio permitirá simplificar cualquier modificación
+ * futura del enum incluyendo el orden de los
+ * elementos.</i></p>
  * 
  * @author Brian Merino - BienStudios Develops
  * @since 26.00.0000_ALPHA

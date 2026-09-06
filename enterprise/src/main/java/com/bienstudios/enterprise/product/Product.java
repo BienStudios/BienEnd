@@ -1,12 +1,17 @@
 package com.bienstudios.enterprise.product;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
+import java.util.Map;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import jakarta.persistence.*;
+import org.hibernate.type.SqlTypes;
 
 import lombok.*;
 
@@ -26,6 +31,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "products")
+@SQLRestriction("application = CURRENT_SETTING('app.current_application', true)")
 public class Product {
 
     /**
@@ -40,36 +46,55 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Aplicación a la que se atribuye
+    @Column(name = "application", nullable = false, updatable = false)
+    private String application;
+
     // Marca del producto
-    @Column(nullable = false)
+    @Column(name = "brand", nullable = false)
     private String brand;
 
     // Modelo genérico
-    @Column(nullable = false)
+    @Column(name ="model", nullable = false)
     private String model;
 
     // Descripción del producto
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    // Condición. Cambie a EnumType.STRING si así lo desea para que
-    // sea más legible en la base de datos y más fácil la posterior
-    // modificación de los enums Condition, HealthStatus, y LegalStatus
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "condition")
+    @Enumerated(EnumType.STRING)
     private Condition condition;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "health")
+    @Enumerated(EnumType.STRING)
     private HealthStatus health;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "legality")
+    @Enumerated(EnumType.STRING)
     private LegalStatus legality;
 
-    // Sin mapeo en entidad por temas de simplicidad.
-    // De ser necesario, añadir con el mapeo correspondiente ó simplificar
-    // como un string con estructura "JSON" si así lo desea.
-    // Map<PaymentCondition, List<PaymentMethod>> paymentConditions;
+    /*
+    ----------------------------------------
+    ---------------- Mapas -----------------
+    ----------------------------------------
+    */
 
-    @Column(nullable = false)
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "categories", columnDefinition = "jsonb")
+    private Map<Category, List<SubCategory>> categories;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "payment_conditions", columnDefinition = "jsonb")
+    private Map<PaymentCondition, List<PaymentMethod>> paymentConditions;
+
+    /*
+    ----------------------------------------
+    ---------------- STAMP -----------------
+    ----------------------------------------
+    */
+
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 
     @CreationTimestamp

@@ -54,33 +54,23 @@ public record ProductRequest(
     @NotBlank(message = "El modelo del producto no puede quedar vacío.")
     String model,
 
-    @NotEmpty(
-        message = "El producto debe contener al menos una "
-        + "categoría con sus subcategorías.")
-    Map<Category, List<SubCategory>> categories,
-
-    @NotBlank(
-        message = "La descripción es necesaria para explicar el "
-        + "producto y sus características, así como para proporcionar "
-        + "información adicional a los usuarios."
-    )
     String description,
 
     // Nuevo, Usado, Reacondicionado
-    @NotNull(message = "Es necesario indicar el estado del producto.")
     Condition condition,
 
     // En condiciones, Deteriorado, Destruído, etc
-    @NotNull(
-        message = "Se requiere informar sobre la integridad física "
-        + "del producto."
-    )
     HealthStatus health,
 
     // Papeles (automotor, inmobiliario), o trámites legales (certificados,
     // permisos, licencias, etc). Opcional, pero recomendable para productos
     // que requieran legalidad.
     LegalStatus legality,
+
+    @NotEmpty(
+        message = "El producto debe contener al menos una "
+        + "categoría con sus subcategorías.")
+    Map<Category, List<SubCategory>> categories,
 
     // Condición que aplique sobre el pago de un producto, atado a su forma de
     // pago. Por ejemplo, <Descuento, Efectivo>, <Cuotas_sin_interés,
