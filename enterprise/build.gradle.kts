@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bienstudios"
-version = "26.00.0000-SNAPSHOT"
+version = "26.00.0000_ALPHA"
 
 java {
 	toolchain {
@@ -22,10 +22,18 @@ dependencies {
 	// Dependencias de Spring Boot
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+
+	// MapStruct
+	implementation("org.mapstruct:mapstruct:1.5.5.Final")
+	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 
 	// Lombok para reducir el código boilerplate
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+
+	// Binding Lombok + MapStruct
+	annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
 
 	// Para manejo de flujos OAuth2 y OpenID Connect
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
@@ -48,4 +56,13 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile> {
+	options.compilerArgs.addAll(
+		listOf(
+			"-Amapstruct.defaultComponentModel=spring",
+			"-Amapstruct.unmappedTargetPolicy=IGNORE"
+		)
+	)
 }

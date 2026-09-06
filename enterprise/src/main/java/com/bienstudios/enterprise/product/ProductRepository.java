@@ -4,14 +4,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * <h3 lang="es">Repositorio de Productos</h3>
+ * <h3 lang="es">Repositorio de {@code Product}</h3>
  *
- * <p lang="es">Interfaz que define las operaciones CRUD para la entidad {@link Product}.</p>
+ * <p lang="es">Intermediario entre la Base de datos y la Capa de Servicio.</p>
+ * 
+ * <p lang="es">Versión simplificada provista por JPA ({@code JpaRepository}).
+ * puede extenderse según sea necesario y modificarse para consultas y comunicación
+ * más robustas.</p>
  * 
  * @author BienStudios Develops
- * @since 26.00.0000_SNAPSHOT
+ * @since 26.00.0000_ALPHA
  */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    // Custom query methods can be defined here if needed
+    // Métodos JPA incluidos. Añadir más de ser necesarios.
 }

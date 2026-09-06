@@ -1,26 +1,26 @@
 package com.bienstudios.enterprise.product;
 
-import java.util.List;
-
-import lombok.RequiredArgsConstructor;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * <h3 lang="es">Capa de Servicio de {@code Product}</h3>
+ * 
+ * <p lang="es">Paginación y limpieza de la <i>entidad</i>.
+ * Simplificación y modelo "base", modifique según necesidades
+ * específicas.</p>
+ * 
+ * @author Brian Merino - BienStudios Develops
+ * @since 26.00.0000_ALPHA
+ */
 @Service
-@RequiredArgsConstructor
-public class ProductService {
-
-    private final ProductRepository repository;
+public interface ProductService {
 
     @Transactional(readOnly = true)
-    public List<Product> getAll() {
-        return repository.findAll();
-    }
+    public Page<Product> getAll(Pageable pageable);
 
     @Transactional
-    public Product create(Product product) {
-        // Lógica de negocio
-        return repository.save(product);
-    }
+    public Product create(Product product);
 }
