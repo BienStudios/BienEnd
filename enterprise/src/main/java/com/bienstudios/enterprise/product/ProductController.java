@@ -11,10 +11,14 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -53,6 +57,14 @@ public class ProductController {
         Page<ProductResponse> responsePage = productsPage.map(mapper::toResponse);
     
         return ResponseEntity.ok(responsePage);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponse> getById(@PathVariable Long id) {
+        Optional<Product> prod = service.findById(id);
+        if (prod.isPresent()) {
+            return ResponseEntity.ok(mapper.toResponse(prod.get()));
+        } else return ResponseEntity.notFound().build();
     }
 
     @PostMapping

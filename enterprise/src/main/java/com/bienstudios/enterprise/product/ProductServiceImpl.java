@@ -1,6 +1,9 @@
 package com.bienstudios.enterprise.product;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +20,12 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     public Page<Product> getAll(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Product> findById(Long id) {
+        return repository.findById(id);
     }
 
     @Override
