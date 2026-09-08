@@ -35,7 +35,7 @@ import org.springframework.data.web.PageableDefault;
  * @since 26.00.0000_ALPHA
  */
 @RestController
-@RequestMapping("/api/v26.00.0000/product")
+@RequestMapping("/enterprise/v26.00.0000/product")
 @RequiredArgsConstructor
 public class ProductController {
 
