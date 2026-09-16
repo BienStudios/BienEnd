@@ -1,0 +1,40 @@
+version: '3.8'
+
+# Conexión con la Red Global
+networks:
+  core-network:
+    external: true
+
+# Servicios
+services:
+  # BFF Gateway
+  bff-client1:
+    build: ./bff_service
+    container_name: bff-client1
+    networks:
+      - core-network
+
+  # Pasarela de Pagos
+  payment-client1:
+    build: ./payment_gateway_service
+    container_name: payment-client1
+    networks:
+      - core-network
+
+  # Microservicio de Usuarios
+  users-client1:
+    build: ./users_service
+    container_name: users-client1
+    networks:
+      - core-network
+
+  # Microservicio de Productos
+  products-client1:
+    build: ./products_service
+    container_name: users-client1
+    networks:
+      - core-networks
+
+  # Microservicio de Carrito de compras
+
+  # Microservicio de ChatBot

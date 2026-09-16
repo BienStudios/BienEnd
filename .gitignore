@@ -11,16 +11,15 @@
 Thumbs.db
 Thumbs.db:encryptable
 ehthumbs.db
-ehประ.db
 Desktop.ini
 $RECYCLE.BIN/
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Visual Studio Code (Aplica a raíz y a subdirectorios/contenedores)
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/tasks.json
+!**/.vscode/launch.json
+!**/.vscode/extensions.json
 *.code-workspace
 
 # JetBrains (IntelliJ, PyCharm, GoLand, CLion, WebStorm)
@@ -38,11 +37,16 @@ out/
 .settings/
 .springBeans
 
-# Sublimetext / Vim
+# Sublime Text / Vim
 *.swp
 *.swo
 *~
 *.sublime-workspace
+
+# Visual Studio / C#
+.vs/
+Generated Files/
+Ankh.xml
 
 # ==========================================
 # Entorno Java / Spring Boot / Gradle (Kotlin DSL)
@@ -66,9 +70,9 @@ hprof-at-*.txt
 crash.bdmp
 
 # Archivos de entorno/configuración sensibles
-**/src/main/resources/application-local.properties
-**/src/main/resources/application-dev.properties
-**/src/main/resources/application-*.secrets.properties
+application-local.properties
+application-dev.properties
+application-*.secrets.properties
 
 # ==========================================
 # Entorno Node.js / TypeScript (BFF)
@@ -79,7 +83,6 @@ jspm_packages/
 
 # Salida de compilación / Bundles
 dist/
-build/
 .next/
 .nuxt/
 *.tsbuildinfo
@@ -104,7 +107,6 @@ lerna-debug.log*
 # ==========================================
 # Binarios compilados
 *.exe
-*.exe;
 *.dll
 *.so
 *.dylib
@@ -116,13 +118,13 @@ lerna-debug.log*
 *.mo
 *.pprof
 
-# Archivos de vendedores (si no se rastrean explícitamente)
+# Archivos de vendedores (descomentar si no se rastrean explícitamente)
 # vendor/
 
 # ==========================================
 # Entorno Python (Image Formatter & Assistant)
 # ==========================================
-# Entornos virtuales (coincide con cualquier nombre de venv en cualquier subcarpeta)
+# Entornos virtuales
 .venv/
 venv/
 ENV/
@@ -134,28 +136,22 @@ venv.bak/
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
 
 # Artefactos de empaquetado/distribución
 .Python
-build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
-var/
 wheels/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 
-# Testing y Linters (pytest, mypy, coverage)
+# Testing y Linters (pytest, mypy, coverage, ruff)
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -177,26 +173,15 @@ htmlcov/
 *.lib
 *.la
 *.lo
-*.so
-*.so.*
-*.dylib
-*.dll
 
-# Binarios ejecutables (patrones genéricos de salida)
-*.exe
-*.out
+# Binarios ejecutables
 *.app
 
-# Archivos generados por Make / Autotools
-Makefile
-!Makefile.am
-!Makefile.in
-*.mk
+# Archivos generados por Autotools / Make
 .deps/
 .dirstamp
 
-# CMake - Ignorar carpetas y archivos de salida/caché
-# Conserva los CMakeLists.txt gracias a que no los incluimos aquí
+# CMake - Salidas de compilación y caché
 CMakeCache.txt
 CMakeFiles/
 CMakeScripts/
@@ -204,6 +189,24 @@ Testing/
 cmake_install.cmake
 CMakeCache.txt.tmp
 compile_commands.json
+
+# ==========================================
+# Entorno C# / .NET
+# ==========================================
+bin/
+obj/
+
+*.user
+*.userosscache
+*.sln.docstates
+
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+packages/
+
+*.stackdump
 
 # ==========================================
 # Variables de Entorno y Secretos (Global)
@@ -229,11 +232,11 @@ compile_commands.json
 kubeconfig
 *.kubeconfig
 
-# Salida de compilación de Docker local (si usas scripts para exportar imágenes)
+# Salidas comprimidas de Docker local
 *.tar.gz
 *.tar
 
-# Archivos de entorno y valores locales sensibles para Docker / Helm
+# Valores locales sensibles para Docker / Helm
 docker-compose.override.yml
 values-local.yaml
 values-dev.yaml
