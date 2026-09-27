@@ -18,13 +18,14 @@ services:
     image: postgres:16-alpine
     container_name: core-postgres
     environment:
-      POSTGRES_DB: core_db
-      POSTGRES_USER: admin
+      POSTGRES_DB: core_db # Base e Datos por defectos para administración
+      POSTGRES_USER: admin # Superusuario admin
       POSTGRES_PASS: database_password # TODO: Contraseña real, añadir archivo a .gitignore
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
     networks:
       - core-network
 
