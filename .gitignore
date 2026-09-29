@@ -21,6 +21,7 @@ $RECYCLE.BIN/
 !**/.vscode/launch.json
 !**/.vscode/extensions.json
 *.code-workspace
+.vscode/
 
 # JetBrains (IntelliJ, PyCharm, GoLand, CLion, WebStorm)
 .idea/
